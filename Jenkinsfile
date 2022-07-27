@@ -9,7 +9,9 @@ pipeline{
                 cleanWs()
                 sh 'echo $USER'
                 checkout scm
-                sh '''
+                withCredentials([usernamePassword(credentialsId: 'javithpatjenkins', passwordVariable: 'pass', usernameVariable: 'user')]) {
+    // the code here can access $pass and $user
+                    sh '''
                 #!/bin/bash
                 echo "hello world"
                 echo "checking git version"
@@ -18,6 +20,8 @@ pipeline{
                 git checkout -b $branch_name
                 git push -u origin $branch_name
                 '''
+}
+                
             }
         }
     }
