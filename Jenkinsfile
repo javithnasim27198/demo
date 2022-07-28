@@ -8,11 +8,12 @@ pipeline{
             steps{
                 cleanWs()
                 sh 'echo $USER'
-                checkout scm
+                
                 withCredentials([usernamePassword(credentialsId: 'javithpatjenkins', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     script {
                         env.encodedPass=URLEncoder.encode(PASS, "UTF-8")
                     }
+                    checkout scm
                     sh '''
                 #!/bin/bash
                 echo "hello world"
