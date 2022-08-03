@@ -17,11 +17,12 @@ pipeline{
                   
                     sh '''
                 #!/bin/bash
-                echo "hello world"
+                echo "hello world" >> a.txt
                 echo "checking git version"
                 git --version
                 git branch
                 git checkout -b $branch_name
+                ls -l
                 git add .
                 git commit -a -m "test"
                 git status
