@@ -14,6 +14,7 @@ pipeline{
                         env.encodedPass=URLEncoder.encode(PASS, "UTF-8")
                     }
                     checkout scm
+                  
                     sh '''
                 #!/bin/bash
                 echo "hello world"
@@ -21,6 +22,9 @@ pipeline{
                 git --version
                 git branch
                 git checkout -b $branch_name
+                git add .
+                git commit -a -m "test"
+                git status
                 git push -u origin $branch_name
                 '''
 }
