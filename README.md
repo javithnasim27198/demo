@@ -1,2 +1,2 @@
 # demo
-email check test1
+email check test2
